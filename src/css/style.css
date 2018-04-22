@@ -6,13 +6,23 @@
     box-sizing: border-box;
     /* Opera/IE 8+ */
 }
-div.the_issue {
-    padding: 5% 5% 5% 5%;
-	background-color: blue
+#title {
+	margin: auto;
+	text-alight: cetner;
 }
-div.solution {
-  padding: padding: 5% 5% 5% 5%;
+#the_issue {
+	padding: 5px 8px 3px 8px;
+	margin: auto;
+	width: 60%
 }
-div.about {
-  padding: padding: 5% 5% 5% 5%;
+#about {
+	margin: auto;
+	padding: 5px 8px 3px 8px;
+	width: 60%
+}
+#marli {
+	margin: 2% 2% 2% 2%;
+}
+#yash {
+	margin: 2% 2% 2% 2%;
 }
