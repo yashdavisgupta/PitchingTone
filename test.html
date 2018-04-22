@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+	<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		
+		
+		<title>Pitching Tone</title>
+</head>
+
+<body>
+	<!--navbar-->
+	<nav class="navbar-left navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">
+		<img src="images/logo-white-100.png" width="30" height="30" class="img-thumbnail d-inline-block align-top" alt="Thumbnail Pitching Tone logo stylized as a tuning fork.">
+		</a>
+		<a class="navbar-brand" href="#the_issue">The Issue</a>
+		<a class="navbar-brand" href="#solution">Solution</a>
+		<a class="navbar-brand" href="#about">About</a>
+	</nav>
+	<!--title-->
+	<div class="jumbotron">
+    	<img src="images/logo-title-smallest.png" alt="Piching Tone Title and logo stylized like a tuning fork.">
+	<p>Encouraging Venture Capitalists to recognize bais. </p>
+    </div>
+	
+	<!-- The Issue -->
+	<div class="row" id="the_issue">
+	<div class="col-sm-5">
+		<h1> The Issue </h1>
+		<p> In June 2017, the Harvard Bussiness Review published an article analyzing how the questsions of Venture Capitalists impact the enormous gender gap in venture capital funding (shown on the right). By catagorizing the questions of the Venture Capitalists as </p>
+		<p><b>Promotion Oriented Questions:</b> focused around hopes, acheivements and ideals; or as</p>
+		<p><b>Prevention Oriented Questions:</b> emphasizing responsibility, security and vigilance</p>
+		<p> the reserachers determined that women were asked predominantly preventative questions whereas men were asked mostly promotional questions.</p>
+		<p> Women aren't able to. There are many reasons showing why companies founded by women should get more than 2% of venture capital (2017). For example, studies have shown that organizations with female leaders have increased their incoming revenue.</p>
+		<p> <b>Pitching Tone</b> aims to help Venture Capitalists recognize and break the habits that have restricted the number of innovation done by women.</p>
+	</div>
+	<div class="col-sm-7">
+		<embed src="Male_and_Female_Entrepreneurs_Get_Asked_Different_Questions_by_VCs-and_It_Affects_How_Much_Funding_They_Get.pdf" type="application/pdf" width="90%" height="90%">
+	</div>
+	</div>
+	
+    <!--Solution-->
+	<h1> Solution </h1>
+	<div id="solution">
+	<textarea cols="70" rows="5" id="query">Why doesn't this work?</textarea>
+    <br><br>
+
+	<input id="submit" value="submit" type="button"><br>
+	<br><br>
+	
+	
+	<label id="url"></label><br>
+	<textarea cols="50" rows="5" id="response"></textarea>
+	
+	</div>
+	
+	
+	<!-- About -->
+	<div id="about">
+	<h1> About </h1>
+	</div>
+	
+	
+	<!-- Scripts -->
+	<script type="text/javascript">
+		$(function () {
+				$('#submit').click(function () {
+					var LUIS_PROGRAMMATIC_ID = "9dc7cf3da7dd4e32bc0ca66db202b5d9";
+					var query = $("#query").val();
+				var params = {
+						"q": query,
+			"timezoneOffset": "0",
+						"verbose": "false",
+						"staging": "false"
+		};
+				var url = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/5e69d719-6d5d-4b66-9683-b1ff4ec7a26b?" + $.param(params); 
+				$('#url').text(url);
+				$.ajax({
+						url: url,
+						beforeSend: function (xhrObj) {
+							// Request headers
+							xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", LUIS_PROGRAMMATIC_ID);
+						},
+						type: "GET",
+						// The request body may be empty for a GET request
+						//data: "{body}"
+		})
+				.done(function (data) {
+				//var intent = JSON.parse(JSON.stringify(data)).topScoringIntent.intent;
+				//var score = JSON.parse(JSON.stringify(data)).topScoringIntent.score;
+				var pretty = JSON.stringify(JSON.parse(JSON.stringify(data)).topScoringIntent,null,2);
+						$("#response").text(pretty);
+				})
+				.fail(function (data) {
+						var pretty = JSON.stringify(JSON.parse(JSON.stringify(data)),null,2);
+						$("#response").text(pretty);
+				});
+			});
+	});
+	</script>
+
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</body>
+</html>
